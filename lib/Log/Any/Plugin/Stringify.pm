@@ -49,7 +49,7 @@ __END__
 
     # Apply your own argument stringifier.
     use Log::Any::Plugin;
-    Log::Any::Plugin->add('Stringify', \&my_stringifier);
+    Log::Any::Plugin->add('Stringify', stringifier => \&my_stringifier);
 
 =head1 DESCRIPTION
 
