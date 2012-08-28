@@ -17,7 +17,7 @@ use Log::Any qw($log);
 
 note 'Applying Decorator plugin.'; {
     lives_ok {
-        Log::Any::Plugin->add('Decorator', prefix => '-testing-', escape_percent => 1 )
+        Log::Any::Plugin->add('Decorator', prefix => '-testing-' )
     } '... plugin applied ok';
 }
 
@@ -29,7 +29,6 @@ note 'Check functionality of default decorator.'; {
     my $msg = $log->msgs->[0]->{message};
     like($msg, qr/\[debug\]/, '... [level] prepended');
     like($msg, qr/-testing-/, '... prefix prepended');
-    like($msg, qr/\%\%/, '... percent symbols escaped');
 }
 
 Test::NoWarnings::had_no_warnings() if $ENV{RELEASE_TESTING};

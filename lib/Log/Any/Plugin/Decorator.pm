@@ -30,7 +30,6 @@ sub default_decorator {
     my $args = shift;
     my $string = sprintf "%s [%s] %s %s",
         $args->{timestamp}, $args->{level}, $args->{prefix} // '', $args->{message};
-    $string =~ s/\%/\%\%/g if $args->{escape_percent};
     return $string;
 }
 
