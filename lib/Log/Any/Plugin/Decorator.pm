@@ -17,7 +17,6 @@ sub install {
             $old_method->($self, $decorator->(
                 {
                     %args,
-                    timestamp => localtime,
                     level     => $method_name,
                     message   => $message,
                 }
@@ -28,8 +27,10 @@ sub install {
 
 sub default_decorator {
     my $args = shift;
-    my $string = sprintf "%s [%s] %s %s",
-        $args->{timestamp}, $args->{level}, $args->{prefix} // '', $args->{message};
+    my $timestamp = localtime;
+    my $string = sprintf "%s [%s] ", $timestamp->datetime, $args->{level};
+    $string .= $args->{prefix} . ' ' if defined $args->{prefix};
+    $string .= $args->{message};
     return $string;
 }
 
